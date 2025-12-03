@@ -30,7 +30,8 @@ ccflags-y := \
 	-DDEBUG \
 	-DCONFIG_NRC_HIF_CSPI \
 	-DENABLE_DYNAMIC_PS \
-	-DCONFIG_MAC80211_MESH
+	-DCONFIG_MAC80211_MESH \
+	-Wno-incompatible-pointer-types
 
 ccflags-y += "-DNRC_VERSION=$(NRC_VERSION)"
 ldflags-y += -T$(M)/nrc.lds
