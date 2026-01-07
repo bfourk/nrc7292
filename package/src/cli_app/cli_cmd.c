@@ -165,7 +165,7 @@ static int cmd_gpio_pullup(cmd_tbl_t *t, int argc, char *argv[]);
 /*******************************************************************************
 * function for periodic show signal command
 *******************************************************************************/
-void *showRxThreadRun();
+void *showRxThreadRun(void *arg);
 
 /*******************************************************************************
 * defines
@@ -2542,8 +2542,11 @@ static int cmd_gpio_pullup(cmd_tbl_t *t, int argc, char *argv[])
 /*******************************************************************************
 * function for periodic show signal command
 *******************************************************************************/
-void *showRxThreadRun(cmd_tbl_t *t)
+//void *showRxThreadRun(cmd_tbl_t *t)
+void *showRxThreadRun(void *arg)
 {
+	cmd_tbl_t *t = (cmd_tbl_t *)arg;
+
 	char param[NRC_MAX_CMDLINE_SIZE];
 	char response[NL_MSG_MAX_RESPONSE_SIZE];
 	int netlink_ret = 0;
