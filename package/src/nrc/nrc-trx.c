@@ -1176,10 +1176,17 @@ static int rx_h_mesh(struct nrc_trx_data *rx)
 			is_mesh_action = true;
 		} else {
 			if (mgmt->u.action.category == WLAN_CATEGORY_MESH_ACTION) {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(7,1,0)
+				if (mgmt->u.action.action_code ==
+					WLAN_MESH_ACTION_HWMP_PATH_SELECTION) {
+					is_mesh_action = true;
+				}
+#else
 				if (mgmt->u.action.u.mesh_action.action_code ==
 					WLAN_MESH_ACTION_HWMP_PATH_SELECTION) {
 					is_mesh_action = true;
 				}
+#endif
 			}
 		}
 	}
